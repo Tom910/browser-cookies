@@ -3,8 +3,8 @@ export interface CookieOptions {
       domain?: string;
       path?: string;
       secure?: boolean;
-      httponly?: boolean;
-      samesite?: "" | "Strict" | "Lax";
+      httpOnly?: boolean;
+      sameSite?: boolean | 'lax' | 'strict' | 'none';
 }
 export function set(name: string, value: string, options?: CookieOptions): void;
 export function get(name: string): string | null;

@@ -1,5 +1,5 @@
 {
-  "name": "browser-cookies",
+  "name": "browser-cookies-compatible",
   "description": "Tiny cookies library for the browser",
   "version": "1.2.0",
   "main": "src/browser-cookies.js",
@@ -45,10 +45,10 @@
   "license": "Unlicence",
   "repository": {
     "type": "git",
-    "url": "git://github.com/voltace/browser-cookies"
+    "url": "git://github.com/Tom910/browser-cookies"
   },
   "bugs": {
-    "url": "https://github.com/voltace/browser-cookies/issues"
+    "url": "https://github.com/Tom910/browser-cookies/issues"
   },
   "keywords": [
     "cookies",
