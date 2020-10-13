@@ -87,7 +87,10 @@ exports.all = function () {
 
     // add the cookie name and value to the `all` object
     var cookie_name = decodeURIComponent(cookie.slice(0, separatorIndex).replace(/^\s+/, ''));
-    all[cookie_name] = decodeURIComponent(cookie.slice(separatorIndex + 1));
+    // if cannot decode cookie value then skip it
+    try {
+      all[cookie_name] = decodeURIComponent(cookie.slice(separatorIndex + 1));
+    } catch (e) {}
   }
 
   return all;
