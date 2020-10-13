@@ -48,11 +48,16 @@ exports.get = function (name) {
     // IE<11 emits the equal sign when the cookie value is empty
     separatorIndex = separatorIndex < 0 ? cookie.length : separatorIndex;
 
-    var cookie_name = decodeURIComponent(cookie.slice(0, separatorIndex).replace(/^\s+/, ''));
+    // if cannot decode cookie value then skip it
+    try {
+      var cookie_name = decodeURIComponent(cookie.slice(0, separatorIndex).replace(/^\s+/, ''));
 
-    // Return cookie value if the name matches
-    if (cookie_name === name) {
-      return decodeURIComponent(cookie.slice(separatorIndex + 1));
+      // Return cookie value if the name matches
+      if (cookie_name === name) {
+        return decodeURIComponent(cookie.slice(separatorIndex + 1));
+      }
+    } catch (e) {
+      console.warn('Decode cookie error', e);
     }
   }
 
@@ -85,12 +90,14 @@ exports.all = function () {
     // IE<11 emits the equal sign when the cookie value is empty
     separatorIndex = separatorIndex < 0 ? cookie.length : separatorIndex;
 
-    // add the cookie name and value to the `all` object
-    var cookie_name = decodeURIComponent(cookie.slice(0, separatorIndex).replace(/^\s+/, ''));
     // if cannot decode cookie value then skip it
     try {
+    // add the cookie name and value to the `all` object
+      var cookie_name = decodeURIComponent(cookie.slice(0, separatorIndex).replace(/^\s+/, ''));
       all[cookie_name] = decodeURIComponent(cookie.slice(separatorIndex + 1));
-    } catch (e) {}
+    } catch (e) {
+      console.warn('Decode cookie error', e);
+    }
   }
 
   return all;
